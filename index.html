@@ -1,1 +1,105 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conquer Server Launch</title>
 
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: white;
+    background: url("background.jpg") no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background: rgba(0,0,0,0.7);
+    padding: 40px;
+    border-radius: 15px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+
+.countdown {
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: not-allowed;
+    background-color: gray;
+    color: white;
+    transition: 0.3s;
+}
+
+button.active {
+    cursor: pointer;
+    background-color: #28a745;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🔥 اهلاً بكم في سيرفر كونكر تهييس الجديد 🔥</h1>
+
+    <div class="countdown" id="countdown">
+        جاري التحميل...
+    </div>
+
+    <button id="enterBtn" disabled>الدخول إلى الموقع</button>
+</div>
+
+<script>
+// حدد ميعاد فتح السيرفر هنا
+let launchDate = new Date("April 30, 2026 20:00:00").getTime();
+
+let countdownFunction = setInterval(function() {
+
+    let now = new Date().getTime();
+    let distance = launchDate - now;
+
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML =
+        days + " يوم | " +
+        hours + " ساعة | " +
+        minutes + " دقيقة | " +
+        seconds + " ثانية ";
+
+    if (distance < 0) {
+        clearInterval(countdownFunction);
+        document.getElementById("countdown").innerHTML = "🎉 تم فتح السيرفر 🎉";
+
+        let btn = document.getElementById("enterBtn");
+        btn.disabled = false;
+        btn.classList.add("active");
+        btn.style.cursor = "pointer";
+
+        btn.onclick = function() {
+            window.location.href = "home.html"; // غيرها برابط موقعك
+        }
+    }
+
+}, 1000);
+</script>
+
+</body>
+</html>
