@@ -1,9 +1,17 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
 <title>Conquer Server Launch</title>
+
+<!-- خط Cairo -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
 * {
@@ -13,71 +21,76 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Cairo', sans-serif;
     color: white;
     height: 100vh;
+    overflow: hidden;
+
+    background: url("background.jpg") no-repeat center center fixed;
+    background-size: cover;
+
     display: flex;
     justify-content: center;
     align-items: center;
-
-    /* الخلفية */
-    background-image: url("background.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
-/* طبقة غامقة فوق الصورة */
+/* طبقة تغميق احترافية */
 .overlay {
-    background: rgba(0, 0, 0, 0.7);
-    padding: 50px;
-    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(5px);
+    padding: 60px;
+    border-radius: 20px;
     text-align: center;
     width: 90%;
     max-width: 600px;
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.5);
 }
 
 h1 {
     margin-bottom: 25px;
-    font-size: 28px;
+    font-size: 30px;
+    font-weight: 800;
 }
 
 #countdown {
-    font-size: 26px;
+    font-size: 24px;
     margin-bottom: 30px;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 button {
     padding: 15px 35px;
     font-size: 18px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     background: gray;
     color: white;
     cursor: not-allowed;
     transition: 0.3s;
+    font-family: 'Cairo', sans-serif;
 }
 
 button.active {
-    background: #00c853;
+    background: linear-gradient(45deg, #ff0000, #ff6600);
     cursor: pointer;
+    box-shadow: 0 0 20px red;
+}
+
+button.active:hover {
+    transform: scale(1.05);
 }
 </style>
 </head>
 <body>
 
 <div class="overlay">
-    <h1>🔥 اهلاً بكم في سيرفر كونكر تهييس 🔥</h1>
-
+    <h1>🔥 أهلاً بكم في سيرفر كونكر تهييس 🔥</h1>
     <div id="countdown">جاري التحميل...</div>
-
     <button id="enterBtn" disabled>الدخول إلى الموقع</button>
 </div>
 
 <script>
 
-// 👇 غير التاريخ ده لميعاد فتح السيرفر
 let launchDate = new Date("March 30, 2026 20:00:00").getTime();
 
 let timer = setInterval(function() {
@@ -107,7 +120,7 @@ let timer = setInterval(function() {
         btn.classList.add("active");
 
         btn.onclick = function() {
-            window.location.href = "home.html"; // غيرها برابطك
+            window.location.href = "home.html";
         };
     }
 
