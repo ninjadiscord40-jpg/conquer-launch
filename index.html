@@ -6,69 +6,81 @@
 <title>Conquer Server Launch</title>
 
 <style>
-body {
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     font-family: Arial, sans-serif;
-    text-align: center;
     color: white;
-    background: url("background.jpg") no-repeat center center/cover;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    /* الخلفية */
+    background-image: url("background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.container {
-    background: rgba(0,0,0,0.7);
-    padding: 40px;
+/* طبقة غامقة فوق الصورة */
+.overlay {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 50px;
     border-radius: 15px;
+    text-align: center;
+    width: 90%;
+    max-width: 600px;
 }
 
 h1 {
-    margin-bottom: 20px;
-    font-size: 30px;
+    margin-bottom: 25px;
+    font-size: 28px;
 }
 
-.countdown {
-    font-size: 28px;
-    margin-bottom: 25px;
+#countdown {
+    font-size: 26px;
+    margin-bottom: 30px;
+    font-weight: bold;
 }
 
 button {
-    padding: 15px 30px;
+    padding: 15px 35px;
     font-size: 18px;
     border: none;
     border-radius: 8px;
-    cursor: not-allowed;
-    background-color: gray;
+    background: gray;
     color: white;
+    cursor: not-allowed;
     transition: 0.3s;
 }
 
 button.active {
+    background: #00c853;
     cursor: pointer;
-    background-color: #28a745;
 }
 </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>🔥 اهلاً بكم في سيرفر كونكر تهييس الجديد 🔥</h1>
+<div class="overlay">
+    <h1>🔥 اهلاً بكم في سيرفر كونكر تهييس 🔥</h1>
 
-    <div class="countdown" id="countdown">
-        جاري التحميل...
-    </div>
+    <div id="countdown">جاري التحميل...</div>
 
     <button id="enterBtn" disabled>الدخول إلى الموقع</button>
 </div>
 
 <script>
-// حدد ميعاد فتح السيرفر هنا
-let launchDate = new Date("April 30, 2026 20:00:00").getTime();
 
-let countdownFunction = setInterval(function() {
+// 👇 غير التاريخ ده لميعاد فتح السيرفر
+let launchDate = new Date("March 30, 2026 20:00:00").getTime();
+
+let timer = setInterval(function() {
 
     let now = new Date().getTime();
     let distance = launchDate - now;
@@ -85,20 +97,22 @@ let countdownFunction = setInterval(function() {
         seconds + " ثانية ";
 
     if (distance < 0) {
-        clearInterval(countdownFunction);
-        document.getElementById("countdown").innerHTML = "🎉 تم فتح السيرفر 🎉";
+        clearInterval(timer);
+
+        document.getElementById("countdown").innerHTML =
+        "🎉 تم فتح السيرفر 🎉";
 
         let btn = document.getElementById("enterBtn");
         btn.disabled = false;
         btn.classList.add("active");
-        btn.style.cursor = "pointer";
 
         btn.onclick = function() {
-            window.location.href = "home.html"; // غيرها برابط موقعك
-        }
+            window.location.href = "home.html"; // غيرها برابطك
+        };
     }
 
 }, 1000);
+
 </script>
 
 </body>
